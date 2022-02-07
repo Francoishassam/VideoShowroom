@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styleSSAI.css" />
+        <!-- Load Didomi for Consent Management -->
+        <script async=false src="http://demo.smartadserver.com/shared/fgh/hb_outstream/didomi_config.js"></script>
+        <!-- Load jqury library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <title>Smart Video SSAI Showcase w/ Mediatailor</title>
+    </head>
+    <body>
+        <div class="header">
+            <div>Smart Video SSAI Showcase using Mediatailor</div>
+        </div>
+        <div class="sectionsPanel">
+            <div class="sectionChoice">
+                1. Choose Streaming Profile    
+                <select id="streamSelect" name="choice">
+                    <option selected="selected"></option>
+                    <optgroup label="Video On Demand">
+                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/Preroll-Smart-v2/AppleHLS1/flame-bao.2018.1080p.bluray.x264.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD HLS - SSAI - Flame Bao</option>
+                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/Preroll-Smart-v2/AppleHLS2/The_Crush_VOD.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD HLS - SSAI - The Crush</option>
+                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_Ad_Inserts/DASH09/The_Crush_VOD.mpd?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">VOD DASH Single Period - SSAI - VMAP - The Crush</option>
+                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_Ad_Inserts/DASH06/flame_bao.mpd?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD DASH Multi Period - SSAI - Flame Bao</option>
+                    </optgroup>
+                    <optgroup label="Live Streaming">
+                      <option value="Not Available">Live HLS</option>
+                      <option value="https://f2414d8345454f6d1beb920b989cd322.7wzuvg.channel-assembly.mediatailor.us-east-1.amazonaws.com/v1/channel/Smart_1/index.mpd">Live DASH (No Ad)</option>
+                  <optgroup label="Custom Streaming URL">
+                      <option>User Input</option>
+                  </optgroup>
+                </select>
+                <div class="listDetails" style="display:none;"></div>
+            </div>
+            <div class="sectionStream" style="display:none;">
+                <div class="description">
+                    2. Customise ADS parameters    
+                </div>
+                <div class="Form">
+                    <form>
+                        <div>
+                            <textarea></textarea>
+                        </div>
+                    </form>
+                <button class="btn" onclick="handleVideoStreamConf()">Load Streaming Configuration</button>
+                </div>
+            </div>
+        </div>
+        <div class="playerContainer">
+            <div class="playerPanel" style="display:none;">
+               <video class="playerPanel" id="videoPlayer" controls></video>
+               <!-- <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div> -->
+            </div> 
+        </div>
+        <script type="text/javascript">
+            // Handle list selection
+            var myDivSection = document.getElementsByClassName("sectionStream")[0];
+            var myDivStreamUrl = document.getElementsByTagName("textarea")[0];
+            var myDivListDetails = document.getElementsByClassName("listDetails")[0];
+            document.getElementById("streamSelect").onchange = function(){
+                myDivSection.style.display = (this.selectedIndex != 0) ? "block" : "none";
+                myDivStreamUrl.value = this.options[this.selectedIndex].value;
+                if ([1].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "block";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> T0 (preroll) - T120 (midroll) <br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([2].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "block";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> T0 (preroll) - T120 (midroll) <br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([3].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "block";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> Cue Points in Stream Request <br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([4].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "block";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> T0 (preroll) <br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([5].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "none";
+                    // myDivListDetails.innerHTML = "<b>Ad Avails:</b> No Ad Break SCTE 35 markers in input Stream<br>";
+                }
+                else if ([6].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "block";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> No Ad Break SCTE 35 markers in input Stream<br>";
+                }
+                else {
+                    myDivListDetails.style.display = "none";
+                    myDivListDetails.innerHTML = "";
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            var DASHplayer;
+            var HLSplayer;
+
+            // Function to load DASH player
+            function invokeDASHVideoPlayer(streamUrl){
+                DASHplayer = dashjs.MediaPlayer().create();
+                DASHplayer.initialize(document.querySelector("#videoPlayer"), streamUrl, false);
+                DASHplayer.setAutoPlay(false);
+            }
+
+            // Function to load HLS player
+            function invokeHLSVideoPlayer(streamUrl){
+                  if (Hls.isSupported()) {
+                    var config = {
+                        autoStartLoad: true,
+                        startPosition: -1,
+                        debug: false,
+                        };
+                    HLSplayer = new Hls(config);
+                    // bind them together
+                    HLSplayer.attachMedia(document.querySelector("#videoPlayer"));
+                    HLSplayer.on(Hls.Events.MEDIA_ATTACHED, function () {
+                      console.log('video and hls.js are now bound together !');
+                      HLSplayer.loadSource(streamUrl);
+                      HLSplayer.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+                        console.log(
+                          'manifest loaded, found ' + data.levels.length + ' quality level'
+                        );
+                      });
+                    });
+                  }
+            }
+
+            // Function to Clear any existing player and create new conditions
+            function preparePlayer(streamMime, playerExists){
+                if (playerExists) {
+                    console.log('player already exists. Remove and prepare new player');
+                    // Remove existing player DOM elements
+                    existingPlayer = document.getElementsByClassName("playerPanel")[0].firstElementChild;
+                    existingPlayer.remove();
+                    // Check player in use and Destroy
+                    (DASHplayer) ? DASHplayer.destroy() : (HLSplayer) ? HLSplayer.destroy() : alert("Undefined situation. l.140");
+                    // Prepare new player
+                    PlayerNew = document.createElement("video");
+                    PlayerNew.setAttribute("id","videoPlayer");PlayerNew.setAttribute("controls","");
+                    document.getElementsByClassName("playerPanel")[0].appendChild(PlayerNew);
+                }
+                else {
+                    // Remove "display:none" attribute from player div
+                    document.getElementsByClassName("playerPanel")[0].removeAttribute("style");
+                }
+            }
+
+            function handleVideoStreamConf() {
+                // Get stream URL from user input
+                streamUrl = document.getElementsByTagName("textarea")[0].value;
+                streamUrl = streamUrl.replaceAll("&amp;", "&");
+                // Define stream mime type HLS or DASH
+                streamMime = (streamUrl.match('.*m3u8')) ? "application/x-mpegurl" : "application/dash+xml";
+                // Check if player is already exists
+                playerExists = (document.getElementsByClassName("playerPanel")[0].style[0] = 'display') ? false:true;
+                // Prepare player conditions
+                preparePlayer(streamMime,playerExists);
+                // Load correct player based on MIME type
+                (streamMime == "application/dash+xml") ? invokeDASHVideoPlayer(streamUrl):invokeHLSVideoPlayer(streamUrl);
+            }
+        </script>
+        <!-- Load DASH.JS library  -->
+        <script src="http://cdn.dashjs.org/latest/dash.all.debug.js"></script>
+        <!-- Load HLS.JS Library -->
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    </body>
+</html>
