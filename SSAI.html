@@ -17,13 +17,19 @@
                 1. Choose Streaming Profile    
                 <select id="streamSelect" name="choice">
                     <option selected="selected"></option>
-                    <optgroup label="Video On Demand">
-                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/Preroll-Smart-v2/AppleHLS1/flame-bao.2018.1080p.bluray.x264.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD HLS - SSAI - Flame Bao</option>
-                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/Preroll-Smart-v2/AppleHLS2/The_Crush_VOD.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD HLS - SSAI - The Crush</option>
-                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_Ad_Inserts/DASH09/The_Crush_VOD.mpd?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">VOD DASH Single Period - SSAI - VMAP - The Crush</option>
-                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_Ad_Inserts/DASH06/flame_bao.mpd?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">VOD DASH Multi Period - SSAI - Flame Bao</option>
+                    <optgroup label="Video On Demand VAST">
+                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/HLS_VAST/AppleHLS1/flame-bao.2018.1080p.bluray.x264.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">HLS - SSAI - Flame Bao</option>
+                        <option value="https://d3uu0ayyro5kdx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/HLS_VAST/AppleHLS2/The_Crush_VOD.m3u8?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">HLS - SSAI - The Crush</option>
+                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_VAST/DASH06/flame_bao.mpd?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">DASH - SSAI - Flame Bao</option>
+                        <option value="https://d3tsgrf86zqsco.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_VAST/DASH09/The_Crush_VOD.mpd?aws.logMode=DEBUG&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.ps=&ads.madb=30&ads.ssar=0&ads.ctd=&ads.tgt=&ads.uid=">DASH - SSAI - The Crush</option>
                     </optgroup>
-                    <optgroup label="Live Streaming">
+                    <optgroup label="Video On Demand VMAP">
+                        <option value="https://d9g2cvf59hfzx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/HLS_VMAP/AppleHLS1/flame-bao.2018.1080p.bluray.x264.m3u8?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.vast=vast3&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">HLS - SSAI - Flame Bao</option>
+                        <option value="https://d9g2cvf59hfzx.cloudfront.net/v1/master/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/HLS_VMAP/AppleHLS2/The_Crush_VOD.m3u8?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.vast=vast3&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">HLS - SSAI - The Crush</option>
+                        <option value="https://d15xxd9pv2ecav.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_VMAP/DASH06/flame_bao.mpd?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.vast=vast3&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">DASH - SSAI - Flame Bao</option>
+                        <option value="https://d15xxd9pv2ecav.cloudfront.net/v1/dash/36e2f8afe48d8956c4c9668bdd5ad7cf3cadafd5/DASH_VMAP/DASH09/The_Crush_VOD.mpd?ads.cue=start,120000&ads.site=356853&ads.page=1469316&ads.fmt=29827&ads.vast=vast3&ads.ssar=0&ads.ps=&ads.madb=30&ads.referer=&ads.appname=&ads.buid=&ads.srl=&ads.uid=&ads.ifa=&ads.ua=&ads.ctt=&ads.ctc=&ads.ctd=&ads.gdpr=&aws.logMode=DEBUG">DASH - SSAI - The Crush</option>
+                    </optgroup>
+                    <optgroup label="Live Stream ing">
                       <option value="Not Available">Live HLS</option>
                       <option value="https://f2414d8345454f6d1beb920b989cd322.7wzuvg.channel-assembly.mediatailor.us-east-1.amazonaws.com/v1/channel/Smart_1/index.mpd">Live DASH (No Ad)</option>
                   <optgroup label="Custom Streaming URL">
@@ -70,7 +76,7 @@
                 }
                 else if ([3].includes(this.selectedIndex)) { 
                     myDivListDetails.style.display = "block";
-                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> Cue Points in Stream Request <br><b>Ad Details:</b> Defined based on stream request parameters below";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> T0 (preroll) <br><b>Ad Details:</b> Defined based on stream request parameters below";
                 }
                 else if ([4].includes(this.selectedIndex)) { 
                     myDivListDetails.style.display = "block";
@@ -78,11 +84,19 @@
                 }
                 else if ([5].includes(this.selectedIndex)) { 
                     myDivListDetails.style.display = "none";
-                    // myDivListDetails.innerHTML = "<b>Ad Avails:</b> No Ad Break SCTE 35 markers in input Stream<br>";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> VMAP Cue Points in Stream Request<br><b>Ad Details:</b> Defined based on stream request parameters below";
                 }
                 else if ([6].includes(this.selectedIndex)) { 
-                    myDivListDetails.style.display = "block";
-                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> No Ad Break SCTE 35 markers in input Stream<br>";
+                    myDivListDetails.style.display = "none";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> VMAP Cue Points in Stream Request<br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([7].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "none";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> VMAP Cue Points in Stream Request<br><b>Ad Details:</b> Defined based on stream request parameters below";
+                }
+                else if ([8].includes(this.selectedIndex)) { 
+                    myDivListDetails.style.display = "none";
+                    myDivListDetails.innerHTML = "<b>Ad Avails:</b> VMAP Cue Points in Stream Request<br><b>Ad Details:</b> Defined based on stream request parameters below";
                 }
                 else {
                     myDivListDetails.style.display = "none";
@@ -98,7 +112,7 @@
             function invokeDASHVideoPlayer(streamUrl){
                 DASHplayer = dashjs.MediaPlayer().create();
                 DASHplayer.initialize(document.querySelector("#videoPlayer"), streamUrl, false);
-                DASHplayer.setAutoPlay(false);
+                // DASHplayer.setAutoPlay(false);
             }
 
             // Function to load HLS player
