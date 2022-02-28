@@ -55,7 +55,6 @@
         <div class="playerContainer">
             <div class="playerPanel" style="display:none;">
                <video class="playerPanel" id="videoPlayer" controls></video>
-               <!-- <div class="theoplayer-container video-js theoplayer-skin vjs-16-9"></div> -->
             </div> 
         </div>
         <script type="text/javascript">
@@ -149,7 +148,7 @@
                     (DASHplayer) ? DASHplayer.destroy() : (HLSplayer) ? HLSplayer.destroy() : alert("Undefined situation. l.140");
                     // Prepare new player
                     PlayerNew = document.createElement("video");
-                    PlayerNew.setAttribute("id","videoPlayer");PlayerNew.setAttribute("controls","");
+                    PlayerNew.setAttribute("class","playerPanel");PlayerNew.setAttribute("id","videoPlayer");PlayerNew.setAttribute("controls","");
                     document.getElementsByClassName("playerPanel")[0].appendChild(PlayerNew);
                 }
                 else {
@@ -165,7 +164,7 @@
                 // Define stream mime type HLS or DASH
                 streamMime = (streamUrl.match('.*m3u8')) ? "application/x-mpegurl" : "application/dash+xml";
                 // Check if player is already exists
-                playerExists = (document.getElementsByClassName("playerPanel")[0].style[0] = 'display') ? false:true;
+                playerExists = (document.getElementsByClassName("playerPanel")[0].style[0] == 'display') ? false:true;
                 // Prepare player conditions
                 preparePlayer(streamMime,playerExists);
                 // Load correct player based on MIME type
