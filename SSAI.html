@@ -9,7 +9,7 @@
         <title>Smart Video SSAI Showcase w/ Mediatailor</title>
     </head>
     <body>
-        <div class="header">
+        <div class="header" onclick="location.href='http://demo.smartadserver.com/shared/fgh/ssai/ssai.html';">
             <div>Smart Video SSAI Showcase using Mediatailor</div>
         </div>
         <div class="sectionsPanel">
@@ -163,7 +163,7 @@
                 streamUrl = streamUrl.replaceAll("&amp;", "&");
                 // Update Main site URL query param
                 if (history.pushState) {
-                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?StreamRequest='+streamUrl;
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?StreamRequest='+ encodeURIComponent(streamUrl);
                     window.history.pushState({path:newurl},'',newurl);
                 }
                 // Define stream mime type HLS or DASH
@@ -175,6 +175,26 @@
                 // Load correct player based on MIME type
                 (streamMime == "application/dash+xml") ? invokeDASHVideoPlayer(streamUrl):invokeHLSVideoPlayer(streamUrl);
             }
+
+            function handleStreamRequestURLinQueryStringParam() {
+                URLParams = new URLSearchParams(window.location.search);
+                StreamRequest = URLParams.get("StreamRequest");
+                if (StreamRequest.length > 0) {
+                    // Select user input option list
+                    document.getElementById("streamSelect")[11].selected = 'selected'
+                    // Un hide url text area
+                    myDivSection.style.display = "block";
+                    // Fill text area with stream request from URL query string param
+                    myDivStreamUrl.value=StreamRequest;
+                }
+            }
+
+
+            // Listen to page load event to process any stream request passed directly in the URL
+            window.addEventListener('load', (event) => {
+                console.log('page is fully loaded');
+                handleStreamRequestURLinQueryStringParam();
+            });    
         </script>
         <!-- Load DASH.JS library  -->
         <script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
