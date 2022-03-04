@@ -161,6 +161,11 @@
                 // Get stream URL from user input
                 streamUrl = document.getElementsByTagName("textarea")[0].value;
                 streamUrl = streamUrl.replaceAll("&amp;", "&");
+                // Update Main site URL query param
+                if (history.pushState) {
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?StreamRequest='+streamUrl;
+                    window.history.pushState({path:newurl},'',newurl);
+                }
                 // Define stream mime type HLS or DASH
                 streamMime = (streamUrl.match('.*m3u8')) ? "application/x-mpegurl" : "application/dash+xml";
                 // Check if player is already exists
